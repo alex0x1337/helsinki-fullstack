@@ -1,0 +1,9 @@
+title 0.6: New note
+
+note over browser:
+browser adds note to array and redraws notes
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: 201 Created
+
