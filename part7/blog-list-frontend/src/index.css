@@ -1,19 +1,11 @@
-.error {
-  color: red;
-  background: lightgrey;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+a {
+  color: black
 }
 
-.success {
-  color: green;
-  background: lightgrey;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+#responsive-navbar-nav a {
+  color: white;
+}
+
+button[type="submit"], .btn-primary, .btn-primary:hover {
+  background-color: #9b59b6
 }

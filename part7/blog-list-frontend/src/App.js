@@ -17,7 +17,7 @@ import {
     BrowserRouter as Router,
     Routes, Route, Link
 } from 'react-router-dom'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, Button } from 'react-bootstrap'
 import BlogList from './components/BlogList'
 
 const App = () => {
@@ -83,17 +83,19 @@ const App = () => {
     )
 
     if(user === null) {
-        return <div>
-            <h2>blogs</h2>
-            <Notification />
-            {loginForm()}
+        return <div style={{ justifyContent: 'center', alignItems: 'center', height: '100vh', display: 'flex' }}>
+            <div>
+                <h1>Blogs</h1>
+                <Notification />
+                {loginForm()}
+            </div>
         </div>
     }
-    const padding = { padding: '1em' }
+    const padding = { padding: '0 1em 0 1em' }
 
     return (
         <Router>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar style={{ padding: '1em', marginBottom: 10 }} collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
@@ -104,11 +106,12 @@ const App = () => {
                             <Link style={padding} to="/users">users</Link>
                         </Nav.Link>
                         <Nav.Link href="#" as="span">
-                            {user
-                                ? <em style={padding}>{user.name} logged in <button onClick={handleLogout}>logout</button></em>
+                            {user !== null
+                                ? <div style={padding}>{user.name} logged in</div>
                                 : <Link style={padding} to="/login">login</Link>
                             }
                         </Nav.Link>
+                        {user !== null && <Nav as="span"><Button variant="light" onClick={handleLogout}>logout</Button></Nav>}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -119,9 +122,10 @@ const App = () => {
                     <Route path="/blogs/:id" element={<BlogPage />} />
                     <Route path="/users" element={<UsersPage />} />
                     <Route path="/" element={<>
-                        <h2>blog app</h2>
+                        <h1>Blog app</h1>
                         <h2>create new</h2>
                         <div>{createBlogForm()}</div>
+                        <br />
                         <BlogList />
                     </>} />
                 </Routes>

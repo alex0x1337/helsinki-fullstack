@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import { Button, Form } from 'react-bootstrap'
 
 const CreateBlogForm = ({ createBlog }) => {
     const [author, setAuthor] = useState('')
@@ -16,36 +17,39 @@ const CreateBlogForm = ({ createBlog }) => {
     }
 
     return (
-        <form onSubmit={handleCreateBlog}>
+        <Form onSubmit={handleCreateBlog}>
             <div>
         title
-                <input
+                <Form.Control
                     type="text"
                     value={title}
                     name="title"
                     onChange={({ target }) => setTitle(target.value)}
+                    required
                 />
             </div>
             <div>
         author
-                <input
+                <Form.Control
                     type="text"
                     value={author}
                     name="author"
                     onChange={({ target }) => setAuthor(target.value)}
+                    required
                 />
             </div>
             <div>
         url
-                <input
+                <Form.Control
                     type="text"
                     value={url}
                     name="url"
                     onChange={({ target }) => setUrl(target.value)}
+                    required
                 />
             </div>
-            <button type="submit">create</button>
-        </form>
+            <Button type="submit">create</Button>
+        </Form>
     )
 }
 

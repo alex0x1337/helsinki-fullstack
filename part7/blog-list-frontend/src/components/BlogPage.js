@@ -5,6 +5,7 @@ import { initializeBlogs, setBlogs } from '../reducers/blogReducer'
 import { createNotification } from '../reducers/notificationReducer'
 import { useEffect } from 'react'
 import Comments from './Comments'
+import { Button } from 'react-bootstrap'
 
 const BlogPage = () => {
     const user = useSelector(state => state.user)
@@ -23,6 +24,9 @@ const BlogPage = () => {
         return null
     }
 
+    const notify = (message, success) => {
+        dispatch(createNotification({ success: success, message: message }))
+    }
     const onRemove = async () => {
         if (!window.confirm(`Remove blog ${blog.title}?`)) {
             return
@@ -36,9 +40,6 @@ const BlogPage = () => {
         } catch (error) {
             notify('failed to remove blog')
         }
-    }
-    const notify = (message, success) => {
-        dispatch(createNotification({ success: success, message: message }))
     }
 
     const handleLikeBlog = async (blogId) => {
@@ -66,15 +67,14 @@ const BlogPage = () => {
         <div>
             <h1>{blog.title} {blog.author}</h1>
             <div className='blogUrl'>{blog.url}</div>
-            <div className='blogLikes'>
-                {blog.likes} <button onClick={() => handleLikeBlog(blog.id)}>like</button>
+            <div className='blogLikes' style={{ margin: 5 }}>
+                {blog.likes} <Button variant="primary" onClick={() => handleLikeBlog(blog.id)}>like</Button>
             </div>
             {blog.user && blog.user.username === user.username && (
                 <div>
-                    <button
+                    <Button variant="danger"
                         onClick={onRemove}
-                        style={{ backgroundColor: '#4085f6', borderRadius: 7 }}
-                    >remove</button>
+                    >remove</Button>
                 </div>
             )}
             <Comments blog={blog} />
