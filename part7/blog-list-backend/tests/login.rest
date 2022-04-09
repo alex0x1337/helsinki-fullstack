@@ -1,0 +1,45 @@
+
+post http://localhost:3003/api/users
+Content-type: application/json
+
+{
+    "name": "mluukkai mluukkai",
+    "username": "mluukkai2",
+    "password": "salainen"
+}
+
+###
+
+post http://localhost:3003/api/login
+Content-type: application/json
+
+{
+    "username": "mluukkai",
+    "password": "salainen"
+}
+
+###
+
+post http://localhost:3003/api/blogs
+Content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOiI2MjRhZGU1YWUxODUyOWIzN2E3OTMyNWMiLCJpYXQiOjE2NDkwNzM3Nzh9.yQYysS4CRRxmA9Cc21PXeO6z0UsxgI79UYUsutEoeCQ
+
+{
+    "userId": "624ade5ae18529b37a79325c",
+    "title": "React patterns",
+    "author": "Michael Chan",
+    "url": "https://reactpatterns.com/",
+    "likes": 7
+}
+
+###
+
+get http://localhost:3003/api/blogs
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOiI2MjRhZGU1YWUxODUyOWIzN2E3OTMyNWMiLCJpYXQiOjE2NDkwNzM3Nzh9.yQYysS4CRRxmA9Cc21PXeO6z0UsxgI79UYUsutEoeCQ
+
+###
+
+delete http://localhost:3003/api/blogs/624ae13fc7d87ec56747e799
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOiI2MjRhZGU1YWUxODUyOWIzN2E3OTMyNWMiLCJpYXQiOjE2NDkwNzM3Nzh9.yQYysS4CRRxmA9Cc21PXeO6z0UsxgI79UYUsutEoeCQ
+
+
